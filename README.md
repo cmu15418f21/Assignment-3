@@ -23,8 +23,10 @@
 │   ├── README
 │   └── sqrt.c
 ├── tutorials
-│   └── openmp.pdf
-│           OpenMP tutorial
+│   ├── openmp.pdf
+│   │       OpenMP tutorial
+│   └── machines.pdf
+│           PSC Bridges 2 tutorial
 └── README.md
 ```
 
