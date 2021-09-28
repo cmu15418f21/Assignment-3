@@ -20,7 +20,7 @@ struct gm_t {
   omp_lock_t indexLock; /* Lock declaration for getting index. */
 } * gm;
 
-static int SlaveStart(void);
+void SlaveStart(void);
 
 int main(int argc, char *argv[]) {
   int i, numProcs;
@@ -62,8 +62,8 @@ int main(int argc, char *argv[]) {
   /* Initialize the lock */
   omp_init_lock(&gm->indexLock);
 
-/* Fork a team of threads */
-#pragma omp parallel
+  /* Fork a team of threads */
+  #pragma omp parallel
   {
     /* Only master thread does this */
     if (omp_get_thread_num() == 0)
@@ -108,7 +108,7 @@ int main(int argc, char *argv[]) {
  *  SlaveStart: this is the routine that all slaves execute after being born.
  *
  */
-SlaveStart() {
+void SlaveStart() {
   int myIndex;
 
   /* Get an index, after first locking it. */
@@ -123,7 +123,6 @@ SlaveStart() {
   /* Do the work of square rooting */
   gm->output[myIndex] = sqrt(gm->input[myIndex]);
 
-/* Stop at the barrier to synchronize, not really necessary in this
-   example */
-#pragma omp barrier
+  /* Stop at the barrier to synchronize, not really necessary in this example */
+  #pragma omp barrier
 }

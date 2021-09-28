@@ -7,6 +7,7 @@
 
 #include <omp.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define MAXLEN 1000
 
@@ -15,7 +16,7 @@
 int main(int argc, char *argv[]) {
   int numProcs, size;
   int a[MAXLEN], b[MAXLEN], c[MAXLEN];
-  int i, j;
+  int i;
 
   /* Get thenumber of processors from the command line */
   if (argc < 2) {
